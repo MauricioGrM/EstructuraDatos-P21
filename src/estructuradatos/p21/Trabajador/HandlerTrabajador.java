@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package estructuradatos.p21.Trabajador;
-import estructuradatos.p21.Trabajador.Trabajador;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /*+------------------------------------------+*\
   | UTILIZACION DE LISTAS SIMPLES            |
@@ -39,22 +42,22 @@ public class HandlerTrabajador {
     }
     
     public void verTrabajadores() {
+        Object[][] rowData = {};
+        Object[] columnNames = { "ID", "CEDULA", "NOMBRE", "EDAD","TELEFONO" };
+        DefaultTableModel listTableModel;
+        listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoListaSimpleTrabajador aux = cabeza;
-        String leftAlignFormat = "| %-4s | %-5s | %-28s |  %-4s| %-9s|%n";
-        System.out.format("+-------------------------------------------------------------------+%n");
-        System.out.format("|                           TRABAJADORES                            |%n");
-        System.out.format("+-------------------------------------------------------------------+%n");
-        System.out.format("| ID   | CEDULA    | NOMBRE                       | EDAD | TELEFONO |%n");
-        System.out.format("+------+-----------+------------------------------+------+----------+%n");
         while (aux != null) {
-            System.out.format(leftAlignFormat,
-            aux.getDato().getIdTrabajador(),
-            aux.getDato().getCedula(),
-            aux.getDato().getNombre(),
-            aux.getDato().getEdad(),
-            aux.getDato().getTelefono());
+            listTableModel.addRow(new Object[] {
+                aux.getDato().getIdTrabajador(),
+                aux.getDato().getCedula(),
+                aux.getDato().getNombre(),
+                aux.getDato().getEdad(),
+                aux.getDato().getTelefono()
+            });
             aux = aux.getSiguiente();
-            System.out.format("+------+-----------+------------------------------+------+----------+%n"); 
         }
+        JTable table = new JTable(listTableModel);
+        JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
 }
