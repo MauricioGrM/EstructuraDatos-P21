@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estructuradatos.p21.Trabajador;
+package Trabajador;
 
-import estructuradatos.p21.Trabajador.Trabajador;
+import Trabajador.Trabajador;
 
 /**
  *
