@@ -4,7 +4,7 @@
   | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
 \*+------------------------------+----+------+*/
 
-package estructuradatos.p21;
+package Principal;
 
 public class EstructuraDatosP21 {
     public static void main(String[] args) {
