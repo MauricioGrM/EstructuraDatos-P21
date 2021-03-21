@@ -9,12 +9,15 @@ import Pagos.HandlerPagos;
 import Trabajador.HandlerTrabajador;
 import Trabajador.Trabajador;
 import Gastos.HandlerGastosFincas;
+import PagosTrabajadores.HandlerPagoTrabajador;
+import PagosTrabajadores.PagoTrabajador;
 import javax.swing.JOptionPane;
 
 public class MenuPrincipal {
     HandlerTrabajador Trabajador = new HandlerTrabajador();
     HandlerPagos Pago = new HandlerPagos();
     HandlerGastosFincas Gasto = new HandlerGastosFincas();
+    HandlerPagoTrabajador Lista = new HandlerPagoTrabajador();
     
     public void RenderMenuPrincipal(){
         String opcion = JOptionPane.showInputDialog(
@@ -22,8 +25,10 @@ public class MenuPrincipal {
             "=========================="+"\n"+
             "1: TRABAJADORES"+"\n"+
             "2: PAGOS"+"\n"+
-            "3: GASTOS"+"\n"+        
-            "0: FINCAS"+"\n"
+            "3: GASTOS"+"\n"+
+            "4: PAGOS TRABAJADORES"+"\n"+
+            "5: FINCAS"+"\n"+
+            "0: SALIR DEL SISTEMA"+"\n"
         );
         if (isNumeric(opcion)){
             MenuPrincipalController(Integer.parseInt(opcion));
@@ -48,6 +53,12 @@ public class MenuPrincipal {
             MenuPrincipalGastos();
             break;
         case 4:
+            MenuPrincipalPagosTrabajador();
+            break;
+        case 5:
+            System.exit(0);
+            break;
+        case 0:
             System.exit(0);
             break;
         default:
@@ -138,6 +149,31 @@ public class MenuPrincipal {
      }
     }
     
+    public void MenuPrincipalPagosTrabajador(){
+        int option = Integer.parseInt(JOptionPane.showInputDialog(
+            "          OPCIONES MENU PAGOS TRABAJADORES     "+"\n"+
+            "=========================="+"\n"+
+            "1: INGRESAR NUEVO PAGO"+"\n"+
+            "2: VER PAGOS REALIZADOS"+"\n"+
+            "0: VOLVER AL MENU PRINCIPAL"+"\n"
+        ));
+        
+        switch (option) {
+        case 1:
+            Lista.insertarPagoTrabajador(new PagoTrabajador(1,1400,12,1));
+            MenuPrincipalPagosTrabajador();
+            break;
+        case 2:
+            Lista.verPagosRealizados();
+            MenuPrincipalPagosTrabajador();
+            break;
+        case 0:
+            RenderMenuPrincipal();
+            break;
+        default:
+            // The user input an unexpected choice.
+        }
+    }
     
     
     //VALIDADORES 

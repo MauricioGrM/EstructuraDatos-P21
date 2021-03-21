@@ -11,10 +11,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author mauricio
- */
+/*+------------------------------------------+*\
+  | UTILIZACION DE PILAS                     |
+  +------------------------------------------+
+  | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
+\*+------------------------------+----+------+*/
+
 public class HandlerGastosFincas {
     private NodoPilaGastosFincas inicio;
     private int tamanio = 0;
