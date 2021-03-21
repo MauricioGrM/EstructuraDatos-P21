@@ -5,7 +5,6 @@
  */
 package PagosTrabajadores;
 
-import Trabajador.NodoListaSimpleTrabajador;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -85,7 +84,7 @@ public class HandlerPagoTrabajador {
                 aux = aux.getSiguiente();
             }
         }   
-         JTable table = new JTable(listTableModel);
+        JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
 }

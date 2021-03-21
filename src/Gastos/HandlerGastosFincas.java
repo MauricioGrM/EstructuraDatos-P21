@@ -5,7 +5,6 @@
  */
 package Gastos;
 
-import Pagos.NodoColaPagos;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
