@@ -11,6 +11,8 @@ import Trabajador.Trabajador;
 import Gastos.HandlerGastosFincas;
 import PagosTrabajadores.HandlerPagoTrabajador;
 import PagosTrabajadores.PagoTrabajador;
+import Vehiculos.HandlerVehiculoArbol;
+import Vehiculos.Vehiculo;
 import javax.swing.JOptionPane;
 
 public class MenuPrincipal {
@@ -18,6 +20,7 @@ public class MenuPrincipal {
     HandlerPagos Pago = new HandlerPagos();
     HandlerGastosFincas Gasto = new HandlerGastosFincas();
     HandlerPagoTrabajador Lista = new HandlerPagoTrabajador();
+    HandlerVehiculoArbol Vehiculo = new HandlerVehiculoArbol();
     
     public void RenderMenuPrincipal(){
         String opcion = JOptionPane.showInputDialog(
@@ -28,6 +31,7 @@ public class MenuPrincipal {
             "3: GASTOS"+"\n"+
             "4: PAGOS TRABAJADORES"+"\n"+
             "5: FINCAS"+"\n"+
+            "6: VEHICULOS"+"\n"+
             "0: SALIR DEL SISTEMA"+"\n"
         );
         if (isNumeric(opcion)){
@@ -57,6 +61,9 @@ public class MenuPrincipal {
             break;
         case 5:
             System.exit(0);
+            break;
+        case 6:
+            MenuPrincipalVehiculos();
             break;
         case 0:
             System.exit(0);
@@ -143,10 +150,7 @@ public class MenuPrincipal {
             "VALOR NO NUMERICO",
             JOptionPane.ERROR_MESSAGE);
             MenuPrincipalPagos();
-        }
-        
-        
-        
+        } 
     }
     
     public void MenuPrincipalGastos(){
@@ -228,6 +232,45 @@ public class MenuPrincipal {
     }
     
     
+     public void MenuPrincipalVehiculos(){
+        String option = JOptionPane.showInputDialog(
+            "          OPCIONES MENU VEHICULOS     "+"\n"+
+            "=========================="+"\n"+
+            "1: AGREGAR VEHICULO"+"\n"+
+            "2: VER VEHICULOS REGISTRADOS"+"\n"+
+            "0: VOLVER AL MENU PRINCIPAL"+"\n"
+        );
+      
+        if (isNumeric(option)){
+            switch (Integer.parseInt(option)) {
+            case 1:
+                Vehiculo.inserta(new Vehiculo((Vehiculo.cantidad()+1),IngresaEntero("PLACA"),IngresaCadena("MARCA"),IngresaCadena("MODELO"),IngresaCadena("DUENO REGISTRAL")));
+                MenuPrincipalVehiculos();
+            break;
+            case 2:
+                Vehiculo.recorridoPreORden();
+                MenuPrincipalVehiculos();
+            break;
+            case 0:
+                RenderMenuPrincipal();
+            break;
+            default:
+            JOptionPane.showMessageDialog(null,
+            "INGRESE UN VALOR DENTRO DE LA LISTA DE OPCIONES",
+            "VALOR FUERA DE LISTA",
+            JOptionPane.ERROR_MESSAGE);
+            MenuPrincipalPagos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null,
+            "INGRESE UN VALOR NUMERICO DE LA LISTA",
+            "VALOR NO NUMERICO",
+            JOptionPane.ERROR_MESSAGE);
+            MenuPrincipalPagos();
+        } 
+    }
+    
+    
     //VALIDADORES 
     public boolean isNumeric(String cadena){
 	try {
@@ -236,5 +279,36 @@ public class MenuPrincipal {
 	} catch (NumberFormatException nfe){
             return false;
 	}
+    }
+    
+    public String IngresaCadena(String Dato){
+        String option = JOptionPane.showInputDialog("INGRESE VALOR DE " + Dato); 
+        if (!option.isEmpty()){
+            return option;
+        } else {
+            do {
+            option = JOptionPane.showInputDialog(null,
+            "INGRESE UN VALOR CORRECTO PARA "+Dato,
+            "VALOR VACIO",
+            JOptionPane.ERROR_MESSAGE);
+            } while(option.isEmpty());
+            return option;
+        }
+    }
+    
+    
+    public int IngresaEntero(String Dato){
+        String option = JOptionPane.showInputDialog("INGRESE VALOR DE " + Dato); 
+        if (isNumeric(option)){
+            return Integer.parseInt(option);
+        } else {
+            do {
+            option = JOptionPane.showInputDialog(null,
+            "INGRESE UN VALOR CORRECTO PARA "+Dato,
+            "VALOR VACIO",
+            JOptionPane.ERROR_MESSAGE);
+            } while(!isNumeric(option));
+            return Integer.parseInt(option);
+        }
     }
 }
