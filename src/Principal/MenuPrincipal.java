@@ -205,7 +205,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Lista.insertarPagoTrabajador(new PagoTrabajador(1,1400,12,1));
+                Lista.insertarPagoTrabajador(new PagoTrabajador(1,IngresaEntero("CANTIDAD DINERO"),IngresaEntero(""),1));
                 MenuPrincipalPagosTrabajador();
             break;
             case 2:
