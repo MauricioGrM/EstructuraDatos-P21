@@ -89,7 +89,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Trabajador.insertarTrabajador(new Trabajador(1,305300042, 20, 83230353, "Jose Mauricio Granados Muñoz"));
+                Trabajador.insertarTrabajador(new Trabajador(1,IngresaEntero("CEDULA"), IngresaEntero("EDAD"), IngresaEntero("NUMERO DE TELEFONO"), IngresaCadena("NOMBRE")));
                 MenuPrincipalTrabajador();
                 break;
             case 2:
