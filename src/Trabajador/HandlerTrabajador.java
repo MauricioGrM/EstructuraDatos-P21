@@ -60,4 +60,13 @@ public class HandlerTrabajador {
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
+    public int cantidad() {
+        int contador = 0;
+        NodoListaSimpleTrabajador aux = cabeza;
+        while (aux != null) {
+            contador++;
+            aux = aux.getSiguiente();
+        }
+        return contador;
+    }
 }

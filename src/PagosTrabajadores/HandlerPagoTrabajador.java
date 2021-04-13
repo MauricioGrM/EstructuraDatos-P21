@@ -87,4 +87,17 @@ public class HandlerPagoTrabajador {
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
+    public int cantidad(){
+        int contador = 0;
+        NodoPagoTrabajador aux = cabeza;
+        if (aux != null) {
+            contador++;
+            aux = aux.getSiguiente();
+            while (aux != cabeza) {
+                contador++;
+                aux = aux.getSiguiente();
+            }
+        }
+        return contador;
+    }
 }

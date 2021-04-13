@@ -27,11 +27,10 @@ public class MenuPrincipal {
             "          SISTEMA CAFICULTORES     "+"\n"+
             "=========================="+"\n"+
             "1: TRABAJADORES"+"\n"+
-            "2: PAGOS"+"\n"+
-            "3: GASTOS"+"\n"+
+            "2: PAGOS POR COOPERATIVA"+"\n"+
+            "3: GASTOS POR COMBUSTIBLE"+"\n"+
             "4: PAGOS TRABAJADORES"+"\n"+
-            "5: FINCAS"+"\n"+
-            "6: VEHICULOS"+"\n"+
+            "5: VEHICULOS"+"\n"+
             "0: SALIR DEL SISTEMA"+"\n"
         );
         if (isNumeric(opcion)){
@@ -60,9 +59,6 @@ public class MenuPrincipal {
             MenuPrincipalPagosTrabajador();
             break;
         case 5:
-            System.exit(0);
-            break;
-        case 6:
             MenuPrincipalVehiculos();
             break;
         case 0:
@@ -81,6 +77,8 @@ public class MenuPrincipal {
         String option = JOptionPane.showInputDialog(
             "          OPCIONES MENU TRABAJADOR     "+"\n"+
             "=========================="+"\n"+
+            "DATOS EN SISTEMA: "+ Trabajador.cantidad()+"\n"+
+            "=========================="+"\n"+
             "1: INGRESAR TRABAJADORES"+"\n"+
             "2: VER TRABAJADORES"+"\n"+
             "0: VOLVER AL MENU PRINCIPAL"+"\n"
@@ -89,7 +87,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Trabajador.insertarTrabajador(new Trabajador(1,IngresaEntero("CEDULA"), IngresaEntero("EDAD"), IngresaEntero("NUMERO DE TELEFONO"), IngresaCadena("NOMBRE")));
+                Trabajador.insertarTrabajador(new Trabajador(Trabajador.cantidad()+1,IngresaEntero("CEDULA"), IngresaEntero("EDAD"), IngresaEntero("NUMERO DE TELEFONO"), IngresaCadena("NOMBRE")));
                 MenuPrincipalTrabajador();
                 break;
             case 2:
@@ -117,7 +115,9 @@ public class MenuPrincipal {
     
     public void MenuPrincipalPagos(){
         String option = JOptionPane.showInputDialog(
-            "          OPCIONES MENU PAGOS     "+"\n"+
+            "          OPCIONES MENU PAGOS COOPERATIVA     "+"\n"+
+            "=========================="+"\n"+
+            "DATOS EN SISTEMA: "+ Pago.cantidad()+"\n"+
             "=========================="+"\n"+
             "1: AGREGAR PAGO"+"\n"+
             "2: VER PAGOS"+"\n"+
@@ -127,7 +127,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Pago.insertarPago(1500000);
+                Pago.insertarPago(IngresaEntero("PAGO"));
                 MenuPrincipalPagos();
             break;
             case 2:
@@ -155,7 +155,7 @@ public class MenuPrincipal {
     
     public void MenuPrincipalGastos(){
         String option = JOptionPane.showInputDialog(
-            "            OPCIONES MENU GASTOS     "+"\n"+
+            "            OPCIONES MENU GASTOS POR COMBUSTIBLE     "+"\n"+
             "=========================="+"\n"+
             "DATOS EN SISTEMA: "+ Gasto.CantidadSistema()+"\n"+
             "=========================="+"\n"+
@@ -166,7 +166,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Gasto.ApilarGastos(1);
+                Gasto.ApilarGastos(IngresaEntero("GASTO"));
                 MenuPrincipalGastos();
             break;
             case 2:
@@ -196,6 +196,8 @@ public class MenuPrincipal {
        String option = JOptionPane.showInputDialog(
             "          OPCIONES MENU PAGOS TRABAJADORES     "+"\n"+
             "=========================="+"\n"+
+            "DATOS EN SISTEMA: "+ Lista.cantidad()+"\n"+
+            "=========================="+"\n"+
             "1: INGRESAR NUEVO PAGO"+"\n"+
             "2: VER PAGOS REALIZADOS"+"\n"+
             "0: VOLVER AL MENU PRINCIPAL"+"\n"
@@ -205,7 +207,7 @@ public class MenuPrincipal {
         if (isNumeric(option)){
             switch (Integer.parseInt(option)) {
             case 1:
-                Lista.insertarPagoTrabajador(new PagoTrabajador(1,IngresaEntero("CANTIDAD DINERO"),IngresaEntero(""),1));
+                Lista.insertarPagoTrabajador(new PagoTrabajador(1,IngresaEntero("CANTIDAD DINERO"),IngresaEntero("CAJUELAS"),IngresaEntero("NUMERO DE FINCA")));
                 MenuPrincipalPagosTrabajador();
             break;
             case 2:
@@ -235,6 +237,8 @@ public class MenuPrincipal {
      public void MenuPrincipalVehiculos(){
         String option = JOptionPane.showInputDialog(
             "          OPCIONES MENU VEHICULOS     "+"\n"+
+            "=========================="+"\n"+
+            "DATOS EN SISTEMA: "+ Vehiculo.cantidad()+"\n"+
             "=========================="+"\n"+
             "1: AGREGAR VEHICULO"+"\n"+
             "2: VER VEHICULOS REGISTRADOS"+"\n"+

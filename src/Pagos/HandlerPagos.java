@@ -57,4 +57,14 @@ public class HandlerPagos {
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
+    
+    public int cantidad(){
+        int contador = 0;
+        NodoColaPagos temp = raiz;
+        while (temp != null ){
+            contador = contador+1;
+            temp = temp.getSig();
+        }
+        return contador;
+    }
 }

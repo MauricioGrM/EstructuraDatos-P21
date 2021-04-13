@@ -44,7 +44,7 @@ public class HandlerGastosFincas {
     public void VerGastos(){
         int Gasto = 0;
         Object[][] rowData = {};
-        Object[] columnNames = { "ID", "GASTO" };
+        Object[] columnNames = { "SEMANA", "GASTO" };
         DefaultTableModel listTableModel;
         listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoPilaGastosFincas aux = inicio;
