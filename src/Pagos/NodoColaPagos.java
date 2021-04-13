@@ -10,6 +10,7 @@ package Pagos;
  * @author mauricio
  */
 public class NodoColaPagos {
+
     private int info;
     private NodoColaPagos sig;
 

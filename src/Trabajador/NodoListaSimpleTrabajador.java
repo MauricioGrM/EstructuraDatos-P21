@@ -12,9 +12,10 @@ import Trabajador.Trabajador;
  * @author mauricio
  */
 public class NodoListaSimpleTrabajador {
+
     private Trabajador dato;
     private NodoListaSimpleTrabajador siguiente;
-    
+
     public NodoListaSimpleTrabajador(Trabajador dato) {
         this.dato = dato;
     }

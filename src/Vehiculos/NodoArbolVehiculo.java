@@ -12,6 +12,7 @@ import Vehiculos.Vehiculo;
  * @author mauricio
  */
 public class NodoArbolVehiculo {
+
     private Vehiculo dato;
     private NodoArbolVehiculo hijoizq;
     private NodoArbolVehiculo hijoder;
@@ -47,5 +48,5 @@ public class NodoArbolVehiculo {
 
     public void setHijoder(NodoArbolVehiculo hijoder) {
         this.hijoder = hijoder;
-    } 
+    }
 }

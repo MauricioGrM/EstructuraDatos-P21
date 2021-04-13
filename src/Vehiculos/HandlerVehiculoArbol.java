@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  * @author mauricio
  */
 public class HandlerVehiculoArbol {
-    
+
     NodoArbolVehiculo raiz;
     int contador = 1;
     int altura;
     int cant;
-    
+
     public void inserta(Vehiculo x) {
 
         if (raiz == null) {
@@ -45,7 +45,7 @@ public class HandlerVehiculoArbol {
         }
 
     }
-    
+
     //PREORDEN
     public void recorridoPreORden() {
         if (raiz != null) {
@@ -58,18 +58,18 @@ public class HandlerVehiculoArbol {
     public void PreORdenR(NodoArbolVehiculo n) {
         if (n != null) {
             JOptionPane.showMessageDialog(null,
-            "DATOS DEL VEHICULO\n"+
-            "ID:"+ n.getDato().getId()+"\n"+
-            "PLACA:"+ n.getDato().getPlaca()+"\n"+
-            "MARCA:"+ n.getDato().getMarca()+"\n"+    
-            "MODELO:"+ n.getDato().getModelo()+"\n"+ 
-            "DUENO REGISTRAL:"+ n.getDato().getDuenoRegistral()
-            , "Dive", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/Hello.png"));
+                    "DATOS DEL VEHICULO\n"
+                    + "ID:" + n.getDato().getId() + "\n"
+                    + "PLACA:" + n.getDato().getPlaca() + "\n"
+                    + "MARCA:" + n.getDato().getMarca() + "\n"
+                    + "MODELO:" + n.getDato().getModelo() + "\n"
+                    + "DUENO REGISTRAL:" + n.getDato().getDuenoRegistral(),
+                     "Dive", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/Hello.png"));
             PreORdenR(n.getHijoizq());
             PreORdenR(n.getHijoder());
         }
     }
-    
+
     public int cantidad() {
         cant = 0;
         cantidad(raiz);

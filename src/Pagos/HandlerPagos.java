@@ -15,46 +15,65 @@ import javax.swing.table.DefaultTableModel;
   +------------------------------------------+
   | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
 \*+------------------------------+----+------+*/
-
 public class HandlerPagos {
+
     NodoColaPagos raiz, fondo;
-    
-    public HandlerPagos(){
-        raiz =  null;
+
+    public HandlerPagos() {
+        raiz = null;
         fondo = null;
     }
-    
-    public boolean vacia(){
+
+    public boolean vacia() {
         return raiz == null;
     }
-    
-    public void insertarPago(int info){
+
+    public void insertarPago(int info) {
         NodoColaPagos nuevo = new NodoColaPagos(info);
-        if(vacia()){
+        if (vacia()) {
             raiz = nuevo;
             fondo = nuevo;
-        }else {
+        } else {
             fondo.setSig(nuevo);
             fondo = nuevo;
         }
     }
-    
-    public void verPagos(){
+
+    public void verPagos() {
         int Semana = 0;
         Object[][] rowData = {};
-        Object[] columnNames = { "SEMANA", "MONTO" };
+        Object[] columnNames = {"SEMANA", "MONTO"};
         DefaultTableModel listTableModel;
         listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoColaPagos temp = raiz;
-        while (temp != null ){
+        while (temp != null) {
             Semana = Semana + 1;
-            listTableModel.addRow(new Object[] {
+            listTableModel.addRow(new Object[]{
                 Semana,
-                temp.getInfo(),
-            });
+                temp.getInfo(),});
             temp = temp.getSig();
         }
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
+    }
+
+    public int cantidad() {
+        int contador = 0;
+        NodoColaPagos temp = raiz;
+        while (temp != null) {
+            contador = contador + 1;
+            temp = temp.getSig();
+        }
+        return contador;
+    }
+
+    public int ObtieneTotal() {
+        int total = 0;
+        NodoColaPagos temp = raiz;
+        while (temp != null) {
+            total = total + temp.getInfo();
+            temp = temp.getSig();
+        }
+        return total;
     }
 }

@@ -15,48 +15,57 @@ import javax.swing.table.DefaultTableModel;
   +------------------------------------------+
   | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
 \*+------------------------------+----+------+*/
-
 public class HandlerGastosFincas {
+
     private NodoPilaGastosFincas inicio;
     private int tamanio = 0;
-    
-    public boolean esVacia(){
+
+    public boolean esVacia() {
         return inicio == null;
     }
-            
-    public void ApilarGastos (int valor) {
-       NodoPilaGastosFincas nuevo =  new NodoPilaGastosFincas();
-       nuevo.setValor(valor);
-       
-       if(esVacia()) {
-           inicio = nuevo;
-       } else {
-           nuevo.setSiguiente(inicio);
-           inicio = nuevo;
-       }
-       tamanio++;
+
+    public void ApilarGastos(int valor) {
+        NodoPilaGastosFincas nuevo = new NodoPilaGastosFincas();
+        nuevo.setValor(valor);
+
+        if (esVacia()) {
+            inicio = nuevo;
+        } else {
+            nuevo.setSiguiente(inicio);
+            inicio = nuevo;
+        }
+        tamanio++;
     }
-    
-    public int CantidadSistema(){
+
+    public int CantidadSistema() {
         return tamanio;
     }
-    
-    public void VerGastos(){
+
+    public void VerGastos() {
         int Gasto = 0;
         Object[][] rowData = {};
-        Object[] columnNames = { "ID", "GASTO" };
+        Object[] columnNames = {"SEMANA", "GASTO"};
         DefaultTableModel listTableModel;
         listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoPilaGastosFincas aux = inicio;
-        while(aux != null){
+        while (aux != null) {
             Gasto = Gasto + 1;
-            listTableModel.addRow(new Object[] {
+            listTableModel.addRow(new Object[]{
                 Gasto,
-                aux.getValor(),
-            });
+                aux.getValor(),});
             aux = aux.getSiguiente();
         }
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
+    }
+
+    public int ObtieneTotal() {
+        int total = 0;
+        NodoPilaGastosFincas aux = inicio;
+        while (aux != null) {
+            total = total + Integer.parseInt(aux.getValor().toString());
+            aux = aux.getSiguiente();
+        }
+        return total;
     }
 }

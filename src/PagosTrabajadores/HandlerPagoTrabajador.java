@@ -15,8 +15,8 @@ import javax.swing.table.DefaultTableModel;
   +------------------------------------------+
   | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
 \*+------------------------------+----+------+*/
-
 public class HandlerPagoTrabajador {
+
     private NodoPagoTrabajador cabeza;
     private NodoPagoTrabajador ultimo;
 
@@ -57,17 +57,15 @@ public class HandlerPagoTrabajador {
         }
 
     }
- 
-    
-    
-    public void verPagosRealizados(){
+
+    public void verPagosRealizados() {
         Object[][] rowData = {};
-        Object[] columnNames = { "ID CAJUELA", "ID TRABAJADOR", "CAJUELAS", "FINCA"};
+        Object[] columnNames = {"ID CAJUELA", "ID TRABAJADOR", "CAJUELAS", "FINCA"};
         DefaultTableModel listTableModel;
         listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoPagoTrabajador aux = cabeza;
         if (aux != null) {
-            listTableModel.addRow(new Object[] {
+            listTableModel.addRow(new Object[]{
                 aux.getDato().getId(),
                 aux.getDato().getTrabajadorId(),
                 aux.getDato().getCajuelas(),
@@ -75,16 +73,44 @@ public class HandlerPagoTrabajador {
             });
             aux = aux.getSiguiente();
             while (aux != cabeza) {
-                listTableModel.addRow(new Object[] {
-                aux.getDato().getId(),
-                aux.getDato().getTrabajadorId(),
-                aux.getDato().getCajuelas(),
-                aux.getDato().getFinca()
+                listTableModel.addRow(new Object[]{
+                    aux.getDato().getId(),
+                    aux.getDato().getTrabajadorId(),
+                    aux.getDato().getCajuelas(),
+                    aux.getDato().getFinca()
                 });
                 aux = aux.getSiguiente();
             }
-        }   
+        }
         JTable table = new JTable(listTableModel);
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
+    }
+
+    public int cantidad() {
+        int contador = 0;
+        NodoPagoTrabajador aux = cabeza;
+        if (aux != null) {
+            contador++;
+            aux = aux.getSiguiente();
+            while (aux != cabeza) {
+                contador++;
+                aux = aux.getSiguiente();
+            }
+        }
+        return contador;
+    }
+
+    public int ObtieneTotal() {
+        int total = 0;
+        NodoPagoTrabajador aux = cabeza;
+        if (aux != null) {
+            total = total + aux.getDato().getCajuelas();
+            aux = aux.getSiguiente();
+            while (aux != cabeza) {
+                total = total + aux.getDato().getCajuelas();
+                aux = aux.getSiguiente();
+            }
+        }
+        return total;
     }
 }

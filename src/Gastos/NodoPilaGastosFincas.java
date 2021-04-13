@@ -10,6 +10,7 @@ package Gastos;
  * @author mauricio
  */
 public class NodoPilaGastosFincas<T> {
+
     private T valor;
     private NodoPilaGastosFincas<T> siguiente;
 
