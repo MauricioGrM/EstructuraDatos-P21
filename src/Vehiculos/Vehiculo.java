@@ -10,6 +10,7 @@ package Vehiculos;
  * @author mauricio
  */
 public class Vehiculo {
+
     private int Id;
     private int Placa;
     private String Marca;
@@ -22,9 +23,9 @@ public class Vehiculo {
         this.Marca = Marca;
         this.Modelo = Modelo;
         this.DuenoRegistral = DuenoRegistral;
-    } 
-    
-   public Vehiculo() {
+    }
+
+    public Vehiculo() {
         this.Id = 0;
         this.Placa = 0;
         this.Marca = "";

@@ -10,6 +10,7 @@ package PagosTrabajadores;
  * @author mauricio
  */
 public class PagoTrabajador {
+
     private int Id;
     private int TrabajadorId;
     private int Cajuelas;
@@ -64,5 +65,5 @@ public class PagoTrabajador {
     @Override
     public String toString() {
         return "PagoTrabajador{" + "Id=" + Id + ", TrabajadorId=" + TrabajadorId + ", Cajuelas=" + Cajuelas + ", Finca=" + Finca + '}';
-    }         
+    }
 }

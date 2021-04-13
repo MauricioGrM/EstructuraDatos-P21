@@ -10,6 +10,7 @@ package Trabajador;
  * @author mauricio
  */
 public class Trabajador {
+
     private int idTrabajador;
     private int Cedula;
     private int Edad;

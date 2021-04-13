@@ -10,10 +10,11 @@ package PagosTrabajadores;
  * @author mauricio
  */
 public class NodoPagoTrabajador {
-   private PagoTrabajador dato;
-   private NodoPagoTrabajador siguiente;
-   private NodoPagoTrabajador atras;
-   
+
+    private PagoTrabajador dato;
+    private NodoPagoTrabajador siguiente;
+    private NodoPagoTrabajador atras;
+
     public NodoPagoTrabajador(PagoTrabajador dato) {
         this.dato = dato;
     }
@@ -45,5 +46,5 @@ public class NodoPagoTrabajador {
     @Override
     public String toString() {
         return "NodoPagoTrabajador{" + "dato=" + dato + ", siguiente=" + siguiente + ", atras=" + atras + '}';
-    }  
+    }
 }
