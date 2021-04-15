@@ -83,7 +83,6 @@ public class HandlerTrabajador {
     }
 
     public void eliminarTrabajador(int referencia) {
-        // Consulta si el valor de referencia existe en la lista.
         if (buscarTrabajador(referencia)) {
             if (cabeza.getDato().getIdTrabajador() == referencia) {
                 cabeza = cabeza.getSiguiente();
