@@ -212,6 +212,7 @@ public class MenuPrincipal {
     }
 
     public void MenuPrincipalPagos() {
+        int PagoIDBuscar;
         String option = JOptionPane.showInputDialog(
                 "          OPCIONES MENU PAGOS COOPERATIVA     " + "\n"
                 + "==========================" + "\n"
@@ -219,6 +220,8 @@ public class MenuPrincipal {
                 + "==========================" + "\n"
                 + "1: AGREGAR PAGO" + "\n"
                 + "2: VER PAGOS" + "\n"
+                + "3: EDITAR PAGO" + "\n"
+                + "4: ELIMINAR PAGO" + "\n"
                 + "0: VOLVER AL MENU PRINCIPAL" + "\n"
         );
 
@@ -230,6 +233,30 @@ public class MenuPrincipal {
                     break;
                 case 2:
                     Pago.verPagos();
+                    MenuPrincipalPagos();
+                    break;
+                case 3:
+                    if (Pago.cantidad() > 0) {
+                        PagoIDBuscar = IngresaEntero("SEMANA PAGADA");
+                        if (Pago.buscarPago(PagoIDBuscar)) {
+                            Pago.editarPago(PagoIDBuscar, IngresaEntero("NUEVO VALOR PAGADO"));
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "INGRESE UN ID CORRECTO",
+                                    "DATO NO ENCONTRADO",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "INGRESE UN DATO PARA REALIZAR ESTA OPERACION",
+                                "NO HAY DATOS ALMACENADOS",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+
+                    MenuPrincipalPagos();
+                    break;
+                case 4:
+                    Pago.eliminarPago(IngresaEntero("ID"));
                     MenuPrincipalPagos();
                     break;
                 case 0:

@@ -76,4 +76,53 @@ public class HandlerPagos {
         }
         return total;
     }
+
+    public boolean buscarPago(int referencia) {
+        int Semana = 0;
+        NodoColaPagos temp = raiz;
+        boolean encontrado = false;
+        while (temp != null && encontrado != true) {
+            Semana = Semana + 1;
+            if (referencia == Semana) {
+                encontrado = true;
+            } else {
+                temp = temp.getSig();
+            }
+        }
+        return encontrado;
+    }
+
+    public void editarPago(int referencia, int NuevoPago) {
+        int Semana = 1;
+        if (buscarPago(referencia)) {
+            NodoColaPagos temp = raiz;
+            if (Semana == referencia) {
+                temp.setInfo(NuevoPago);
+            } else {
+                while (Semana != referencia) {
+                    Semana = Semana + 1;
+                    temp = temp.getSig();
+                }
+                temp.setInfo(NuevoPago);
+            }
+        }
+    }
+
+//    public void eliminarPago(int referencia) {
+//        int Semana = 1;
+//        if (buscarPago(referencia)) {
+//            if (Semana == referencia) {
+//                raiz = raiz.getSig();
+//            } else {
+//                NodoColaPagos temp = raiz;
+//                while (Semana != referencia) {
+//                    Semana = Semana + 1;
+//                    temp = temp.getSig();
+//                }
+//                NodoColaPagos siguiente = temp.getSig().getSig();
+//                temp.setSig(siguiente);
+//            }
+//        }
+//    }
+
 }
