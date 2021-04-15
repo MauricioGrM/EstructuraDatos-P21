@@ -131,13 +131,16 @@ public class MenuPrincipal {
     }
 
     public void MenuPrincipalTrabajador() {
+        int TrabajadorBuscarID;
         String option = JOptionPane.showInputDialog(
                 "          OPCIONES MENU TRABAJADOR     " + "\n"
                 + "==========================" + "\n"
                 + "DATOS EN SISTEMA: " + Trabajador.cantidad() + "\n"
                 + "==========================" + "\n"
-                + "1: INGRESAR TRABAJADORES" + "\n"
+                + "1: INGRESAR TRABAJADOR" + "\n"
                 + "2: VER TRABAJADORES" + "\n"
+                + "3: EDITAR TRABAJADOR" + "\n"
+                + "4: ELIMINAR TRABAJADOR" + "\n"
                 + "0: VOLVER AL MENU PRINCIPAL" + "\n"
         );
 
@@ -149,6 +152,44 @@ public class MenuPrincipal {
                     break;
                 case 2:
                     Trabajador.verTrabajadores();
+                    MenuPrincipalTrabajador();
+                    break;
+                case 3:
+                    if (Trabajador.cantidad() > 0) {
+                        TrabajadorBuscarID = IngresaEntero("ID TRABAJADOR");
+                        if (Trabajador.buscarTrabajador(TrabajadorBuscarID)) {
+                            Trabajador.editarTrabajador(TrabajadorBuscarID, new Trabajador(TrabajadorBuscarID, IngresaEntero("CEDULA"), IngresaEntero("EDAD"), IngresaEntero("NUMERO DE TELEFONO"), IngresaCadena("NOMBRE")));
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "INGRESE UN ID CORRECTO",
+                                    "DATO NO ENCONTRADO",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "INGRESE UN DATO PARA REALIZAR ESTA OPERACION",
+                                "NO HAY DATOS ALMACENADOS",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                    MenuPrincipalTrabajador();
+                    break;
+                case 4:
+                    if (Trabajador.cantidad() > 0) {
+                        TrabajadorBuscarID = IngresaEntero("ID TRABAJADOR");
+                        if (Trabajador.buscarTrabajador(TrabajadorBuscarID)) {
+                            Trabajador.eliminarTrabajador(TrabajadorBuscarID);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "INGRESE UN ID CORRECTO",
+                                    "DATO NO ENCONTRADO",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null,
+                                "INGRESE UN DATO PARA REALIZAR ESTA OPERACION",
+                                "NO HAY DATOS ALMACENADOS",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                     MenuPrincipalTrabajador();
                     break;
                 case 0:
