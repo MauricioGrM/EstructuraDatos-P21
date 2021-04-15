@@ -59,6 +59,45 @@ public class HandlerTrabajador {
         JOptionPane.showMessageDialog(null, new JScrollPane(table));
     }
 
+    public boolean buscarTrabajador(int referencia) {
+        NodoListaSimpleTrabajador aux = cabeza;
+        boolean encontrado = false;
+        while (aux != null && encontrado != true) {
+            if (referencia == aux.getDato().getIdTrabajador()) {
+                encontrado = true;
+            } else {
+                aux = aux.getSiguiente();
+            }
+        }
+        return encontrado;
+    }
+
+    public void editarTrabajador(int referencia, Trabajador p) {
+        if (buscarTrabajador(referencia)) {
+            NodoListaSimpleTrabajador aux = cabeza;
+            while (aux.getDato().getIdTrabajador() != referencia) {
+                aux = aux.getSiguiente();
+            }
+            aux.setDato(p);
+        }
+    }
+
+    public void eliminarTrabajador(int referencia) {
+        // Consulta si el valor de referencia existe en la lista.
+        if (buscarTrabajador(referencia)) {
+            if (cabeza.getDato().getIdTrabajador() == referencia) {
+                cabeza = cabeza.getSiguiente();
+            } else {
+                NodoListaSimpleTrabajador aux = cabeza;
+                while (aux.getSiguiente().getDato().getIdTrabajador() != referencia) {
+                    aux = aux.getSiguiente();
+                }
+                NodoListaSimpleTrabajador siguiente = aux.getSiguiente().getSiguiente();
+                aux.setSiguiente(siguiente);
+            }
+        }
+    }
+
     public int cantidad() {
         int contador = 0;
         NodoListaSimpleTrabajador aux = cabeza;
