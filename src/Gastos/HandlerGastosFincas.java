@@ -68,4 +68,52 @@ public class HandlerGastosFincas {
         }
         return total;
     }
+
+    public boolean buscarGasto(int referencia) {
+        int Gasto = 0;
+        NodoPilaGastosFincas temp = inicio;
+        boolean encontrado = false;
+        while (temp != null && encontrado != true) {
+            Gasto = Gasto + 1;
+            if (referencia == Gasto) {
+                encontrado = true;
+            } else {
+                temp = temp.getSiguiente();
+            }
+        }
+        return encontrado;
+    }
+
+    public void editarGasto(int referencia, int NuevoPago) {
+        int Gasto = 1;
+        if (buscarGasto(referencia)) {
+            NodoPilaGastosFincas temp = inicio;
+            if (Gasto == referencia) {
+                temp.setValor(NuevoPago);
+            } else {
+                while (Gasto != referencia) {
+                    Gasto = Gasto + 1;
+                    temp = temp.getSiguiente();
+                }
+                temp.setValor(NuevoPago);
+            }
+        }
+    }
+
+    public void eliminarGasto(int referencia) {
+        int Gasto = 1;
+        if (buscarGasto(referencia)) {
+            if (Gasto == referencia) {
+                inicio = inicio.getSiguiente();
+            } else {
+                NodoPilaGastosFincas temp = inicio;
+                while (Gasto != referencia - 1) {
+                    Gasto = Gasto + 1;
+                    temp = temp.getSiguiente();
+                }
+                NodoPilaGastosFincas siguiente = temp.getSiguiente().getSiguiente();
+                temp.setSiguiente(siguiente);
+            }
+        }
+    }
 }

@@ -279,6 +279,7 @@ public class MenuPrincipal {
     }
 
     public void MenuPrincipalGastos() {
+        int GastoIDBuscar;
         String option = JOptionPane.showInputDialog(
                 "            OPCIONES MENU GASTOS POR COMBUSTIBLE     " + "\n"
                 + "==========================" + "\n"
@@ -286,6 +287,8 @@ public class MenuPrincipal {
                 + "==========================" + "\n"
                 + "1: AGREGAR GASTO NUEVO" + "\n"
                 + "2: VER HISTORICO DE GASTOS" + "\n"
+                + "3: EDITAR COMBUSTIBLE" + "\n"
+                + "4: ELIMINAR PAGO" + "\n"
                 + "0: VOLVER AL MENU PRINCIPAL" + "\n"
         );
         if (isNumeric(option)) {
@@ -297,6 +300,32 @@ public class MenuPrincipal {
                 case 2:
                     Gasto.VerGastos();
                     MenuPrincipalGastos();
+                    break;
+                case 3:
+                    if (Gasto.ObtieneTotal() > 0) {
+                        GastoIDBuscar = IngresaEntero("SEMANA PAGADA");
+                        if (Gasto.buscarGasto(GastoIDBuscar)) {
+                            Gasto.editarGasto(GastoIDBuscar, IngresaEntero("NUEVO VALOR GASTADO"));
+                        } else {
+                            Alerts(1);
+                        }
+                    } else {
+                        Alerts(2);
+                    }
+                    MenuPrincipalGastos();
+                    break;
+                case 4:
+                    if (Gasto.ObtieneTotal() > 0) {
+                        GastoIDBuscar = IngresaEntero("SEMANA PAGADA");
+                        if (Gasto.buscarGasto(GastoIDBuscar)) {
+                            Gasto.eliminarGasto(GastoIDBuscar);
+                        } else {
+                            Alerts(1);
+                        }
+                    } else {
+                        Alerts(2);
+                    }
+                    MenuPrincipalPagos();
                     break;
                 case 0:
                     RenderMenuPrincipal();
@@ -448,4 +477,24 @@ public class MenuPrincipal {
             return "MUY BUENAS NOCHES";
         }
     }
+
+    public void Alerts(int AlertNum) {
+        switch (AlertNum) {
+            case 1:
+                JOptionPane.showMessageDialog(null,
+                        "INGRESE UN ID CORRECTO",
+                        "DATO NO ENCONTRADO",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null,
+                        "INGRESE UN DATO PARA REALIZAR ESTA OPERACION",
+                        "NO HAY DATOS ALMACENADOS",
+                        JOptionPane.ERROR_MESSAGE);
+                break;
+            default:
+            // code block
+        }
+    }
+
 }
