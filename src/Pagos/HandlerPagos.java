@@ -108,6 +108,23 @@ public class HandlerPagos {
         }
     }
 
+    public void eliminarPago(int referencia) {
+        int Semana = 1;
+        if (buscarPago(referencia)) {
+            if (Semana == referencia) {
+                raiz = raiz.getSig();
+            } else {
+                NodoColaPagos temp = raiz;
+                while (Semana != referencia - 1) {
+                    Semana = Semana + 1;
+                    temp = temp.getSig();
+                }
+                NodoColaPagos siguiente = temp.getSig().getSig();
+                temp.setSig(siguiente);
+            }
+        }
+    }
+
 //    public void eliminarPago(int referencia) {
 //        int Semana = 1;
 //        if (buscarPago(referencia)) {
@@ -124,5 +141,4 @@ public class HandlerPagos {
 //            }
 //        }
 //    }
-
 }
