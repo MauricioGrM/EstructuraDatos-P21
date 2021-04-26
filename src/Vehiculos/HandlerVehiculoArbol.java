@@ -1,18 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vehiculos;
 
 import Vehiculos.Vehiculo;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author mauricio
- */
+/*+------------------------------------------+*\
+  | UTILIZACION DE ARBOLES Y RECURSIVIDAD    |
+  +------------------------------------------+
+  | PROYECTO ESTRUCTURA DE DATOS | IC | 2021 |
+\*+------------------------------+----+------+*/
+
 public class HandlerVehiculoArbol {
 
     NodoArbolVehiculo raiz;
@@ -46,7 +43,6 @@ public class HandlerVehiculoArbol {
 
     }
 
-    //PREORDEN
     public void recorridoPreORden() {
         if (raiz != null) {
             PreORdenR(raiz);
@@ -64,7 +60,7 @@ public class HandlerVehiculoArbol {
                     + "MARCA:" + n.getDato().getMarca() + "\n"
                     + "MODELO:" + n.getDato().getModelo() + "\n"
                     + "DUENO REGISTRAL:" + n.getDato().getDuenoRegistral(),
-                     "Dive", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/Hello.png"));
+                    "Dive", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("assets/Hello.png"));
             PreORdenR(n.getHijoizq());
             PreORdenR(n.getHijoder());
         }

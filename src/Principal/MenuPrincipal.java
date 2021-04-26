@@ -15,7 +15,6 @@ import Vehiculos.HandlerVehiculoArbol;
 import Vehiculos.Vehiculo;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class MenuPrincipal {
@@ -58,21 +57,21 @@ public class MenuPrincipal {
     }
 
     public void Estadisticas() {
-        String msg = "<html>"
-                + "<p><b>ESTADISTICAS SISTEMA DE RECOLECCION DE CAFE</b></p>"
-                + "<p><b>GASTOS POR COMBUSTIBLE: </b>" + Gasto.ObtieneTotal() + "</p>"
-                + "<p><b>PAGOS SALARIOS TRABAJADORES: </b>" + Lista.ObtieneTotal() + "</p>"
-                + "<p><b>TOTAL GASTOS REALIZADOS: </b>" + (Gasto.ObtieneTotal() + Lista.ObtieneTotal()) + "</p>"
-                + "<p><b>TOTAL ENTRADAS COOPERATIVA: </b>" + Pago.ObtieneTotal() + "</p>"
-                + "<p><b>GANANCIAS: </b>" + (Pago.ObtieneTotal() - (Gasto.ObtieneTotal() + Lista.ObtieneTotal())) + "</p>"
-                + "<p><b>==========================</b></p>"
-                + "<p><b>VEHICULOS EN STOCK: </b>" + Vehiculo.cantidad() + "</p>"
-                + "<p><b>TOTAL TRABAJADORES: </b>" + Trabajador.cantidad() + "</p>"
-                + "<p><b>==========================</b></p>"
-                + "<p><b>0: VOLVER AL MENU</b></p>"
-                + "</html>";
-        JLabel label = new JLabel(msg);
-        String opcion = JOptionPane.showInputDialog(null, label);
+        int PagoTrabajadores = Lista.ObtieneTotal() * PrecioCajuela;
+        String opcion = JOptionPane.showInputDialog(null,
+                "          SISTEMA CAFICULTORES| ESTADISTICAS    " + "\n"
+                + "==========================" + "\n"
+                + "PRECIO CAJUELA: " + PrecioCajuela + "\n"
+                + "==========================" + "\n"
+                + "- GASTOS POR COMBUSTIBLE: " + Gasto.ObtieneTotal() + "\n"
+                + "- PAGOS SALARIOS TRABAJADORES: " + PagoTrabajadores + "\n"
+                + "- TOTAL GASTOS REALIZADOS: " + (Gasto.ObtieneTotal() + PagoTrabajadores) + "\n"
+                + "- TOTAL ENTRADAS COOPERATIVA: " + Pago.ObtieneTotal() + "\n"
+                + "- GANANCIAS TOTALES: " + (Pago.ObtieneTotal() - (Gasto.ObtieneTotal() + PagoTrabajadores)) + "\n"
+                + "- VEHICULOS EN STOCK: " + Vehiculo.cantidad() + "\n"
+                + "- TOTAL TRABAJADORES: " + Trabajador.cantidad() + "\n"
+                + "0: SALIR DEL SISTEMA" + "\n"
+        );
         if (isNumeric(opcion)) {
             switch (Integer.parseInt(opcion)) {
                 case 0:
@@ -347,6 +346,7 @@ public class MenuPrincipal {
     }
 
     public void MenuPrincipalPagosTrabajador() {
+        int PagoIDBuscar;
         String option = JOptionPane.showInputDialog(
                 "          OPCIONES MENU PAGOS TRABAJADORES     " + "\n"
                 + "==========================" + "\n"
@@ -354,17 +354,45 @@ public class MenuPrincipal {
                 + "==========================" + "\n"
                 + "1: INGRESAR NUEVO PAGO" + "\n"
                 + "2: VER PAGOS REALIZADOS" + "\n"
+                + "3: EDITAR PAGO REALIZADO" + "\n"
+                + "4: ELIMINAR PAGO REALIZADO" + "\n"
                 + "0: VOLVER AL MENU PRINCIPAL" + "\n"
         );
 
         if (isNumeric(option)) {
             switch (Integer.parseInt(option)) {
                 case 1:
-                    Lista.insertarPagoTrabajador(new PagoTrabajador(1, IngresaEntero("ID TRABAJADOR"), IngresaEntero("CAJUELAS"), IngresaEntero("NUMERO DE FINCA")));
+                    Lista.insertarPagoTrabajador(new PagoTrabajador((Lista.cantidad() + 1), IngresaEntero("ID TRABAJADOR"), IngresaEntero(" CANTIDAD DE CAJUELAS"), IngresaEntero("NUMERO DE FINCA")));
                     MenuPrincipalPagosTrabajador();
                     break;
                 case 2:
                     Lista.verPagosRealizados();
+                    MenuPrincipalPagosTrabajador();
+                    break;
+                case 3:
+                    if (Lista.cantidad() > 0) {
+                        PagoIDBuscar = IngresaEntero("ID DEL PAGO REALIZADO");
+                        if (Lista.buscarPagoRealiazado(PagoIDBuscar)) {
+                            Lista.editarPagoRealiazado(PagoIDBuscar, new PagoTrabajador(PagoIDBuscar, IngresaEntero("ID TRABAJADOR"), IngresaEntero("CAJUELAS"), IngresaEntero("NUMERO DE FINCA")));
+                        } else {
+                            Alerts(1);
+                        }
+                    } else {
+                        Alerts(2);
+                    }
+                    MenuPrincipalPagosTrabajador();
+                    break;
+                case 4:
+                    if (Lista.cantidad() > 0) {
+                        PagoIDBuscar = IngresaEntero("ID DEL PAGO REALIZADO");
+                        if (Lista.buscarPagoRealiazado(PagoIDBuscar)) {
+                            Lista.eliminarPagoRealiazado(PagoIDBuscar);
+                        } else {
+                            Alerts(1);
+                        }
+                    } else {
+                        Alerts(2);
+                    }
                     MenuPrincipalPagosTrabajador();
                     break;
                 case 0:

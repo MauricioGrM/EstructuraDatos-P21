@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PagosTrabajadores;
 
 import javax.swing.JOptionPane;
@@ -60,7 +55,7 @@ public class HandlerPagoTrabajador {
 
     public void verPagosRealizados() {
         Object[][] rowData = {};
-        Object[] columnNames = {"ID CAJUELA", "ID TRABAJADOR", "CAJUELAS", "FINCA"};
+        Object[] columnNames = {"ID PAGO", "ID TRABAJADOR", "CAJUELAS", "FINCA"};
         DefaultTableModel listTableModel;
         listTableModel = new DefaultTableModel(rowData, columnNames);
         NodoPagoTrabajador aux = cabeza;
@@ -112,5 +107,43 @@ public class HandlerPagoTrabajador {
             }
         }
         return total;
+    }
+
+    public boolean buscarPagoRealiazado(int referencia) {
+        NodoPagoTrabajador aux = cabeza;
+        boolean encontrado = false;
+        while (aux != null && encontrado != true) {
+            if (referencia == aux.getDato().getId()) {
+                encontrado = true;
+            } else {
+                aux = aux.getSiguiente();
+            }
+        }
+        return encontrado;
+    }
+
+    public void editarPagoRealiazado(int referencia, PagoTrabajador p) {
+        if (buscarPagoRealiazado(referencia)) {
+            NodoPagoTrabajador aux = cabeza;
+            while (aux.getDato().getId() != referencia) {
+                aux = aux.getSiguiente();
+            }
+            aux.setDato(p);
+        }
+    }
+
+    public void eliminarPagoRealiazado(int referencia) {
+        if (buscarPagoRealiazado(referencia)) {
+            if (cabeza.getDato().getId() == referencia) {
+                cabeza = cabeza.getSiguiente();
+            } else {
+                NodoPagoTrabajador aux = cabeza;
+                while (aux.getSiguiente().getDato().getId() != referencia) {
+                    aux = aux.getSiguiente();
+                }
+                NodoPagoTrabajador siguiente = aux.getSiguiente().getSiguiente();
+                aux.setSiguiente(siguiente);
+            }
+        }
     }
 }
