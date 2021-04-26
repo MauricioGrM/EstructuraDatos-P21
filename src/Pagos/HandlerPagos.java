@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Pagos;
 
 import javax.swing.JOptionPane;
@@ -124,21 +119,4 @@ public class HandlerPagos {
             }
         }
     }
-
-//    public void eliminarPago(int referencia) {
-//        int Semana = 1;
-//        if (buscarPago(referencia)) {
-//            if (Semana == referencia) {
-//                raiz = raiz.getSig();
-//            } else {
-//                NodoColaPagos temp = raiz;
-//                while (Semana != referencia) {
-//                    Semana = Semana + 1;
-//                    temp = temp.getSig();
-//                }
-//                NodoColaPagos siguiente = temp.getSig().getSig();
-//                temp.setSig(siguiente);
-//            }
-//        }
-//    }
 }
