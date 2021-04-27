@@ -38,6 +38,12 @@ public class HandlerGastosFincas {
     }
 
     public int CantidadSistema() {
+        tamanio = 0;
+        NodoPilaGastosFincas aux = inicio;
+        while (aux != null) {
+            tamanio = tamanio + 1;
+            aux = aux.getSiguiente();
+        }
         return tamanio;
     }
 
