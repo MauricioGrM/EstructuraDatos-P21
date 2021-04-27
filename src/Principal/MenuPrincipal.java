@@ -67,7 +67,7 @@ public class MenuPrincipal {
                 + "- PAGOS SALARIOS TRABAJADORES: " + PagoTrabajadores + "\n"
                 + "- TOTAL GASTOS REALIZADOS: " + (Gasto.ObtieneTotal() + PagoTrabajadores) + "\n"
                 + "- TOTAL ENTRADAS COOPERATIVA: " + Pago.ObtieneTotal() + "\n"
-                + "- GANANCIAS TOTALES: " + (Pago.ObtieneTotal() - (Gasto.ObtieneTotal() + PagoTrabajadores)) + "\n"
+                + "- GANANCIAS O PERDIDAS TOTALES: " + (Pago.ObtieneTotal() - (Gasto.ObtieneTotal() + PagoTrabajadores)) + "\n"
                 + "- VEHICULOS EN STOCK: " + Vehiculo.cantidad() + "\n"
                 + "- TOTAL TRABAJADORES: " + Trabajador.cantidad() + "\n"
                 + "0: SALIR DEL SISTEMA" + "\n"
@@ -301,7 +301,7 @@ public class MenuPrincipal {
                     MenuPrincipalGastos();
                     break;
                 case 3:
-                    if (Gasto.ObtieneTotal() > 0) {
+                    if (Gasto.CantidadSistema() > 0) {
                         GastoIDBuscar = IngresaEntero("SEMANA PAGADA");
                         if (Gasto.buscarGasto(GastoIDBuscar)) {
                             Gasto.editarGasto(GastoIDBuscar, IngresaEntero("NUEVO VALOR GASTADO"));
@@ -314,7 +314,7 @@ public class MenuPrincipal {
                     MenuPrincipalGastos();
                     break;
                 case 4:
-                    if (Gasto.ObtieneTotal() > 0) {
+                    if (Gasto.CantidadSistema() > 0) {
                         GastoIDBuscar = IngresaEntero("SEMANA PAGADA");
                         if (Gasto.buscarGasto(GastoIDBuscar)) {
                             Gasto.eliminarGasto(GastoIDBuscar);
@@ -324,7 +324,7 @@ public class MenuPrincipal {
                     } else {
                         Alerts(2);
                     }
-                    MenuPrincipalPagos();
+                    MenuPrincipalGastos();
                     break;
                 case 0:
                     RenderMenuPrincipal();
